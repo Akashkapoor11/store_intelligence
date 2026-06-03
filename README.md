@@ -6,7 +6,7 @@ An end-to-end AI-powered store intelligence system built from raw CCTV footage. 
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # 1. Clone the repo
@@ -36,7 +36,7 @@ docker compose up --build
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 store_intelligence/
@@ -51,7 +51,7 @@ store_intelligence/
 
 ---
 
-## 🎯 API Endpoints
+##  API Endpoints
 
 | Endpoint | Description |
 |----------|-------------|
@@ -71,7 +71,7 @@ store_intelligence/
 
 ---
 
-## 🧠 Architecture
+##  Architecture
 
 **Detection:** YOLOv8n → ByteTrack → Zone Mapper → Staff Filter → Re-entry Guard → Event Emitter  
 **Storage:** PostgreSQL 15 (events + sales_data tables, indexed)  
@@ -87,7 +87,7 @@ See [DESIGN.md](DESIGN.md) for full architecture and [CHOICES.md](CHOICES.md) fo
 
 ---
 
-## 🏪 Store Data
+##  Store Data
 
 - **Store:** Brigade Road, Bangalore (ST1008)
 - **Date:** 10 April 2026
@@ -98,7 +98,7 @@ See [DESIGN.md](DESIGN.md) for full architecture and [CHOICES.md](CHOICES.md) fo
 
 ---
 
-## 🧪 Running Tests
+##  Running Tests
 
 ```bash
 # Start the system first
@@ -126,7 +126,7 @@ pytest tests/ -v
 
 ---
 
-## 📊 Key Metrics (10 April 2026)
+##  Key Metrics (10 April 2026)
 
 | Metric | Value |
 |--------|-------|
@@ -172,7 +172,7 @@ cp frontend/.env.example frontend/.env
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - CCTV video files are NOT included in the repository (per challenge rules)
 - Challenge resource folders like `_extracted/` are ignored by `.gitignore` and not part of the submission.
@@ -181,7 +181,7 @@ cp frontend/.env.example frontend/.env
 - All 12 API endpoints return valid JSON immediately after `docker compose up`
 - Set `CCTV_DATA_PATH` in `.env` to the absolute path of your CCTV footage folder before running detection.
 
-## 🚢 Deployment Checklist
+##  Deployment Checklist
 
 Follow these steps to deploy the production stack:
 
