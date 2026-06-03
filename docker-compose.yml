@@ -1,0 +1,82 @@
+
+# ────────────────────────────────────────────────────────────────────────────
+# Local Docker Compose — for development / detection pipeline
+#
+# Hosted deployment:
+#   Backend + DB  → Render   (render.yaml)
+#   Frontend      → Vercel   (frontend/vercel.json)
+# ────────────────────────────────────────────────────────────────────────────
+
+services:
+  # ── Database ────────────────────────────────────────────────
+  db:
+    image: postgres:15-alpine
+    container_name: purplle_db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-store_intel}
+      POSTGRES_USER: ${POSTGRES_USER:-purplle}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-purplle_secret}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U purplle -d store_intel" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  # ── Detection Pipeline ───────────────────────────────────────
+  # Run manually after providing CCTV footage:
+  #   CCTV_DATA_PATH=/path/to/footage docker compose --profile detection up detection
+  detection:
+    build:
+      context: ./detection
+      dockerfile: Dockerfile
+    container_name: purplle_detection
+    profiles: [ "detection" ] # opt-in: only runs with --profile detection
+    env_file:
+      - ./detection/.env
+    volumes:
+      - ${CCTV_DATA_PATH:-/dev/null}:/data/cctv:ro
+      - ./detection/models:/models
+      - detection_logs:/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no" # detection runs once then exits
+
+  # ── FastAPI Backend ──────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: purplle_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      # Explicit overrides so reviewers see working metrics immediately
+      DATABASE_URL: postgresql://${POSTGRES_USER:-purplle}:${POSTGRES_PASSWORD:-purplle_secret}@db:5432/${POSTGRES_DB:-store_intel}
+      SALES_CSV_PATH: /data/sales.csv
+    volumes:
+      - ${SALES_CSV_PATH:-/dev/null}:/data/sales.csv:ro
+      - api_logs:/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+
+
+volumes:
+  pgdata:
+  detection_logs:
+  api_logs:

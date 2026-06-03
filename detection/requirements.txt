@@ -1,0 +1,11 @@
+ultralytics>=8.2.28
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.29
+pydantic==2.7.1
+loguru==0.7.2
+scipy==1.13.0
+Pillow==10.3.0
+tqdm==4.66.2
+lapx

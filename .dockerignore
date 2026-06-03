@@ -1,0 +1,22 @@
+# Exclude challenge data and extracted resources from Docker build context
+_extracted
+*.csv
+*.mp4
+*.zip
+CCTV*/
+cctv*/
+excel_unzipped/
+__pycache__/
+*.py[cod]
+*.log
+*.env
+*.env.*
+node_modules/
+frontend/
+backend/__pycache__/
+detection/__pycache__/
+pytest.ini
+README.md
+CHOICES.md
+DESIGN.md
+tests/

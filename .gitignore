@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Env
+.env
+*.env
+
+# Docker
+*.log
+
+# Data — DO NOT COMMIT (per challenge rules)
+*.mp4
+*.zip
+*.csv
+*.xlsx
+CCTV*/
+_extracted/
+
+# Models
+*.pt
+*.onnx
+models/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Frontend
+node_modules/
+.next/
