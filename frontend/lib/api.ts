@@ -122,6 +122,7 @@ export interface HealthData {
   db_connected: boolean;
   event_count: number;
   version: string;
+  pipeline_lag_sec?: number;
 }
 
 // ── API Calls ─────────────────────────────────────────────────────────────────
