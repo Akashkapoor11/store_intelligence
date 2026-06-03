@@ -1,6 +1,5 @@
-# Purplle Store Intelligence System
+# Store Intelligence System
 
-> **UpGrad Placements · April 2026 — Round 2 Submission**
 
 An end-to-end AI-powered store intelligence system built from raw CCTV footage. Detects and tracks customers, maps them to store zones, computes business metrics, and surfaces insights via REST API and live dashboard.
 
