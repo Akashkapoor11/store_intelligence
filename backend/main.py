@@ -102,6 +102,7 @@ async def lifespan(app: FastAPI):
         logger.warning(f"Sales seed failed (non-fatal): {e}")
 
     # Seed demo CCTV events disabled to ensure 100% pure live data from CCTV
+    # User is going to push real data from local pipeline!
     pass
 
     yield
