@@ -145,9 +145,9 @@ pytest tests/ -v
 
 This project uses dedicated env files for each service:
 
-- `backend/.env` — backend service configuration
-- `detection/.env` — detection pipeline configuration
-- `frontend/.env` — frontend dashboard configuration
+- `backend/.env` - backend service configuration
+- `detection/.env` - detection pipeline configuration
+- `frontend/.env` - frontend dashboard configuration
 
 Use the example files to bootstrap each service:
 
